@@ -36,7 +36,7 @@ This project turns an ESP8266 into a wireless access point with a web interface 
 
 1. Install the ESP8266 board package in the Arduino IDE.
 2. Install the FastLED library via the Library Manager in the Arduino IDE.
-3. Open the provided sketch and adjust the `NUM_LEDS` constant to match the number of LEDs in your strip.
+3. `NUM_LEDS` is currently set to 1000 and should be greater than the number of LEDs you anticipate in your string.
 4. Upload the sketch to your ESP8266.
 
 ## Usage
