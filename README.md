@@ -1,6 +1,6 @@
 # ESP8266 WS2812 Determine the number of LEDs in a string
 
-This program  allows me to quickly determine how many LEDs are in a WS2812 type string.  There are three sliders that increment by 100,  10,  and 1.  Adjust the 100 slider until the LED just disappears off the end,  and then back it off by one so you can see the LED.  Repeat the process with the 10s slider,  and then the 1s slider.  The LED should be set to the last LED and the number of LEDs can be read off the web page. The maximum number of LEDs is currently set to 1000.
+This Arduino sketch allows one to quickly determine how many LEDs are in a WS2812 type string.  There are three sliders that increment by 100,  10,  and 1.  Adjust the 100 slider until the LED just disappears off the end,  and then back it off by one so you can see the LED.  Repeat the process with the 10s slider,  and then the 1s slider.  The LED should be set to the last LED and the number of LEDs can be read off the web page. The maximum number of LEDs is currently set to 1000.
 
 This project turns an ESP8266 into a wireless access point with a web interface for controlling WS2812 LEDs. It features a simple web page with sliders that allow users to select the position of an LED to light up on the strip. The project uses the FastLED library to control the LEDs and demonstrates a basic implementation of a web server on the ESP8266.
 
