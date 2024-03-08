@@ -1,58 +1,59 @@
-#include <ESP8266WiFi.h>
-#include <ESP8266WebServer.h>
-#include <FastLED.h>
+// See README for usage
+// Include necessary libraries
+#include <ESP8266WiFi.h> // Library for ESP8266 WiFi functionality
+#include <ESP8266WebServer.h> // Web server library for ESP8266
+#include <FastLED.h> // Library for controlling LEDs
 
-#define LED_PIN     4
-#define NUM_LEDS    1000
+#define LED_PIN     4 // GPIO pin connected to the LED strip data line
+#define NUM_LEDS    1000 // Number of LEDs in the strip
 
-CRGB leds[NUM_LEDS];
+CRGB leds[NUM_LEDS]; // Array to hold the current color of each LED
 
-const char* ssid = "WS2812";
-ESP8266WebServer server(80);
+const char* ssid = "WS2812"; // SSID for the WiFi Access Point
+ESP8266WebServer server(80); // Create a web server on port 80
 
 void setup() {
-  Serial.begin(115200);
-  delay(100);
+  Serial.begin(115200); // Start serial communication at 115200 baud
+  delay(100); // Short delay after serial communication begins
 
   // Set up the LEDs
-  FastLED.addLeds<WS2812, LED_PIN, GRB>(leds, NUM_LEDS);
-  FastLED.setBrightness(50);
-   // Initialize the first LED to be lit
-  setLED(0); // Add this line to light up the first LED
-
-  
+  FastLED.addLeds<WS2812, LED_PIN, GRB>(leds, NUM_LEDS); // Initialize the LED strip
+  FastLED.setBrightness(50); // Set the brightness of the LEDs
   
   // Set up Wi-Fi Access Point
-  WiFi.softAP(ssid);
+  WiFi.softAP(ssid); // Create an open WiFi network with the specified SSID
 
-  // Web server routes
+  // Define web server routes
   server.on("/", HTTP_GET, []() {
-    server.send(200, "text/html", getWebPage());
+    server.send(200, "text/html", getWebPage()); // Serve the main HTML page
   });
 
   server.on("/set", HTTP_GET, []() {
+    // Parse the RGB values from the GET request
     String slider1 = server.arg("slider1");
     String slider2 = server.arg("slider2");
     String slider3 = server.arg("slider3");
-    int position = slider1.toInt() + slider2.toInt() + slider3.toInt();
+    int position = slider1.toInt() + slider2.toInt() + slider3.toInt(); // Calculate position
 
     // Ensure position is within the bounds of the LED array
     position = max(0, min(NUM_LEDS - 1, position));
-    setLED(position);
+    setLED(position); // Set the LED at the calculated position
     
-    server.send(200, "text/plain", String(position));
+    server.send(200, "text/plain", String(position)); // Respond with the new position
   });
 
-  server.begin();
+  server.begin(); // Start the web server
 }
 
 void loop() {
-  server.handleClient();
+  server.handleClient(); // Handle incoming web requests
 }
 
+// Function to set a specific LED to red and turn off all others
 void setLED(int position) {
   Serial.print("Setting LED position to: ");
   Serial.println(position);
+  
   // Turn all LEDs off
   for(int i = 0; i < NUM_LEDS; i++) {
     leds[i] = CRGB::Black;
@@ -60,10 +61,12 @@ void setLED(int position) {
 
   // Set specified LED to red
   leds[position] = CRGB::Red;
-  FastLED.show();
+  FastLED.show(); // Update the LED strip with the new colors
 }
 
+// Function to generate the main web page HTML
 String getWebPage() {
+  // HTML content with JavaScript for the sliders that control the LED strip
   return String(
     "<!DOCTYPE html><html><body>"
     "<h2>LED Control</h2>"
