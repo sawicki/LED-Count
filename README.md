@@ -20,7 +20,7 @@ This project turns an ESP8266 into a wireless access point with a web interface 
 
 - ESP8266 module (e.g., NodeMCU, Wemos D1 Mini)
 - WS2812 LED Strip
-- Power Supply for the LED strip
+- Power Supply for the LED strip (since you are only lighting one LED at a time,  power from the USB connection should be fine)
 - Connecting wires
 
 ## Software Requirements
