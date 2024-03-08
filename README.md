@@ -42,13 +42,15 @@ This project turns an ESP8266 into a wireless access point with a web interface 
 ## Usage
 
 1. After uploading the sketch, the ESP8266 will broadcast a WiFi network with the SSID "WS2812".
-2. Connect to this network from a device with a web browser.
-3. Open a web browser and navigate to `http://192.168.4.1`.
+2. Connect to this network from a device with a web browser.   On my android phone,  I get a set of options on connecting,  and I usually use "Connect only this time"
+3. Open a web browser and navigate to `http://192.168.4.1`. 
 4. Use the sliders on the web page to control the LEDs on the strip. The "LED index" field shows the sum of the sliders, and the "Number of LEDs" shows the number of LEDs you have when that last one is lit (index +1).
 
-## Customization
+## Use Cases
 
-The sketch and web interface can be customized to add more functionality, such as changing LED colors, adding patterns, or controlling multiple LED strips.
+1. Determine the number of LEDs in a string.
+2. Split large segments into easily defined smaller segments (eg cut a 60 LED segment off a much larger spool of LEDs)
+3. Explore the layout of matrices, rings,  etc.
 
 ## Troubleshooting
 
