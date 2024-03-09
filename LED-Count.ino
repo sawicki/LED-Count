@@ -1,3 +1,4 @@
+// Felix Sawicki
 // See README for usage
 // Include necessary libraries
 #include <ESP8266WiFi.h> // Library for ESP8266 WiFi functionality
