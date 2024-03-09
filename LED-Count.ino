@@ -6,7 +6,7 @@
 #include <FastLED.h> // Library for controlling LEDs
 
 #define LED_PIN     4 // GPIO pin connected to the LED strip data line
-#define NUM_LEDS    1000 // Number of LEDs in the strip
+#define NUM_LEDS    1000 // This should be larger than the number of LEDs we expect
 
 CRGB leds[NUM_LEDS]; // Array to hold the current color of each LED
 
