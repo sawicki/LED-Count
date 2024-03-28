@@ -1,4 +1,3 @@
-// Felix Sawicki
 // See README for usage
 // Include necessary libraries
 #include <ESP8266WiFi.h> // Library for ESP8266 WiFi functionality
@@ -6,7 +5,7 @@
 #include <FastLED.h> // Library for controlling LEDs
 
 #define LED_PIN     4 // GPIO pin connected to the LED strip data line
-#define NUM_LEDS    1000 // This should be larger than the number of LEDs we expect
+#define NUM_LEDS    1000 // Number of LEDs in the strip
 
 CRGB leds[NUM_LEDS]; // Array to hold the current color of each LED
 
@@ -20,6 +19,13 @@ void setup() {
   // Set up the LEDs
   FastLED.addLeds<WS2812, LED_PIN, GRB>(leds, NUM_LEDS); // Initialize the LED strip
   FastLED.setBrightness(50); // Set the brightness of the LEDs
+
+  // Turn off all LEDs using FastLED.clear()
+  FastLED.clear();
+
+  // Set the first LED (index 0) to be initially on
+  leds[0] = CRGB::Red;
+  FastLED.show();
   
   // Set up Wi-Fi Access Point
   WiFi.softAP(ssid); // Create an open WiFi network with the specified SSID
